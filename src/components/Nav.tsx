@@ -9,7 +9,7 @@ import { ModeToggle } from "./theme-toggle"
 export function Nav({ children }: { children: ReactNode }) {
   return (
     <nav className="bg-background flex px-4 py-4 border-b items-center justify-between shadow">
-      <div className="h-fit w-fit flex gap-1">
+      <div className="h-fit w-fit flex gap-1 items-center">
       {children}
       </div>
       <ModeToggle/> 
