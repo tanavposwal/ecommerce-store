@@ -22,6 +22,7 @@ model Product {
   createdAt              DateTime               @default(now())
   updatedAt              DateTime               @updatedAt
   orders                 Order[]
+  cart                   Cart[]
   downloadVerifications  DownloadVerification[]
 }
 
@@ -31,6 +32,18 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   orders    Order[]
+  cart      Cart[]
+}
+
+model Cart {
+  id               String   @id @default(uuid())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  userId    String
+  productId String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Restrict)
 }
 
 model Order {

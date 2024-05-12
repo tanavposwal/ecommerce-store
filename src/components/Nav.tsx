@@ -58,7 +58,7 @@ function UserState() {
 
   if (user)
     return (
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-2 items-center">
         <img className="rounded-md w-9 h-9" src={user.picture!} alt={user.name!} />
         <Button variant="ghost" asChild>
         <Link href="/api/auth/logout">Logout</Link>
