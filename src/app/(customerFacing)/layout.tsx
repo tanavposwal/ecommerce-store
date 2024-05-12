@@ -15,7 +15,8 @@ export default function AdminLayout({
       <Nav>
         <Button asChild className="mr-3"><Link href="/"><ShoppingBagIcon className="w-6 h-6" /></Link></Button>
         <NavLink href="/products">Products</NavLink>
-        <NavLink href="/orders">My orders</NavLink>
+        <NavLink href="/orders">My Orders</NavLink>
+        <NavLink href="/cart">My Cart</NavLink>
       </Nav>
       <div className="container my-6">{children}</div>
     </>

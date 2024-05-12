@@ -10,6 +10,7 @@ import {
 import { Button } from "./ui/button"
 import Link from "next/link"
 import Image from "next/image"
+import { ShoppingCartIcon } from "@heroicons/react/24/outline"
 
 type ProductCardProps = {
   id: string
@@ -38,9 +39,12 @@ export function ProductCard({
       <CardContent className="flex-grow">
         <p className="line-clamp-4">{description}</p>
       </CardContent>
-      <CardFooter>
-        <Button asChild size="lg" className="w-full">
+      <CardFooter className="flex gap-3">
+        <Button asChild className="w-full">
           <Link href={`/products/${id}/purchase`}>Purchase</Link>
+        </Button>
+        <Button variant="outline" size="icon" className="h-full hover:border-primary">
+          <ShoppingCartIcon className="text-xl h-5 mx-2" />
         </Button>
       </CardFooter>
     </Card>
