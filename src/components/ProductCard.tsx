@@ -1,4 +1,4 @@
-import { formatCurrency } from "@/lib/formatters"
+import { formatCurrency } from "@/lib/formatters";
 import {
   Card,
   CardContent,
@@ -6,21 +6,21 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card"
-import { Button } from "./ui/button"
-import Link from "next/link"
-import Image from "next/image"
-import { ShoppingCartIcon } from "@heroicons/react/24/outline"
+} from "./ui/card";
+import { Button } from "./ui/button";
+import Link from "next/link";
+import Image from "next/image";
+import AddToCart from "./AddToCart";
 
 type ProductCardProps = {
-  id: string
-  name: string
-  priceInCents: number
-  description: string
-  imagePath: string
-}
+  id: string;
+  name: string;
+  priceInCents: number;
+  description: string;
+  imagePath: string;
+};
 
-export function ProductCard({
+export async function ProductCard({
   id,
   name,
   priceInCents,
@@ -43,12 +43,10 @@ export function ProductCard({
         <Button asChild className="w-full">
           <Link href={`/products/${id}/purchase`}>Purchase</Link>
         </Button>
-        <Button variant="outline" size="icon" className="h-full hover:border-primary">
-          <ShoppingCartIcon className="text-xl h-5 mx-2" />
-        </Button>
+        <AddToCart id={id} />
       </CardFooter>
     </Card>
-  )
+  );
 }
 
 export function ProductCardSkeleton() {
@@ -72,5 +70,5 @@ export function ProductCardSkeleton() {
         <Button className="w-full" disabled size="lg"></Button>
       </CardFooter>
     </Card>
-  )
+  );
 }
