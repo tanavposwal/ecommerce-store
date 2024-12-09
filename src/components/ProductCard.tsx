@@ -36,7 +36,7 @@ export async function ProductCard({
         <CardTitle>{name}</CardTitle>
         <CardDescription>{formatCurrency(priceInCents / 100)}</CardDescription>
       </CardHeader>
-      <CardContent className="flex-grow">
+      <CardContent className="grow">
         <p className="line-clamp-4">{description}</p>
       </CardContent>
       <CardFooter className="flex gap-3">

@@ -42,7 +42,7 @@ export function CheckoutForm({ product, clientSecret }: CheckoutFormProps) {
   return (
     <div className="max-w-5xl w-full mx-auto space-y-8">
       <div className="flex gap-4 items-center">
-        <div className="aspect-video flex-shrink-0 w-1/3 relative">
+        <div className="aspect-video shrink-0 w-1/3 relative">
           <Image
             src={product.imagePath}
             fill

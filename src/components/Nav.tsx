@@ -11,7 +11,7 @@ import { toast } from "sonner";
 
 export function Nav({ children }: { children: ReactNode }) {
   return (
-    <nav className="bg-background flex px-4 py-4 border-b items-center justify-between shadow">
+    <nav className="bg-background flex px-4 py-4 border-b items-center justify-between shadow-sm">
       <div className="h-fit w-fit flex gap-1 items-center">{children}</div>
       <div className="flex gap-4">
         <UserState />

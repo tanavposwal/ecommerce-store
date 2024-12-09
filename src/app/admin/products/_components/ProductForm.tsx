@@ -51,7 +51,7 @@ export function ProductForm({ product }: { product?: Product | null }) {
             <Label htmlFor="image">Image {product == null ? "" : <span className="text-xs text-muted-foreground">Optional</span>}</Label>
             <Input type="file" id="image" name="image" required={product == null} />
             {error.image && <div className="text-destructive">{error.image}</div>}
-            {product != null && <Image src={product?.imagePath} className="border rounded shadow" height={300} width={300} alt={product.name} /> }
+            {product != null && <Image src={product?.imagePath} className="border rounded shadow-sm" height={300} width={300} alt={product.name} /> }
         </div>
         <SubmitButton />
     </form>

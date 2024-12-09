@@ -50,12 +50,13 @@ export async function POST(req: NextRequest) {
       to: email,
       subject: "Order Confirmation",
       react: (
+        //@ts-ignore
         <PurchaseReceiptEmail
           order={order}
           product={product}
           downloadVerificationId={downloadVerification.id}
         />
-      ),
+      )
     })
   }
 
