@@ -1,23 +1,21 @@
 import type { Metadata } from "next";
-import { GeistSans } from 'geist/font/sans';
+import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ClerkProvider } from "@clerk/nextjs"
 import NextTopLoader from "nextjs-toploader";
-import { Toaster } from 'sonner'
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Ecommerce",
   description: "next amazon",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <ClerkProvider>
+      <html lang="en">
         <body
           className={cn(
             "min-h-screen bg-background font-sans antialiased",
@@ -35,6 +33,7 @@ export default function RootLayout({
           </ThemeProvider>
           <Toaster />
         </body>
-    </html>
+      </html>
+    </ClerkProvider>
   );
 }

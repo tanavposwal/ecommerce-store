@@ -4,7 +4,6 @@ import { emailOrderHistory } from "@/actions/orders";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-//@ts-ignore
 import { useActionState } from "react";
 
 export default function MyOrdersPage() {

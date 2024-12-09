@@ -28,19 +28,16 @@ export async function ProductCard({
 }: ProductCardProps) {
   return (
     <div className="flex flex-col w-72 h-fit">
+      <Link href={`/products/${id}/purchase`}>
       <div className="flex items-center justify-center border">
         <img src={imagePath} alt={name} className="w-fit max-h-48 aspect-auto" />
       </div>
-      <div className="my-3">
+      <div className="mt-3">
         <h2 className="text-lg font-bold truncate">{name}</h2>
         <p className="opacity-70">{formatCurrency(priceInCents / 100)}</p>
       </div>
-      <div className="flex gap-1 h-fit items-center justify-center">
-        <Button asChild className="w-full">
-          <Link href={`/products/${id}/purchase`}>Purchase</Link>
-        </Button>
-        <AddToCart id={id} />
-      </div>
+      </Link>
+      <AddToCart id={id} />
     </div>
   );
 }

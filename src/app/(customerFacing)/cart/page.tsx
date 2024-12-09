@@ -1,14 +1,14 @@
 import db from "@/db/db";
 import { Suspense } from "react";
 import { ProductCard, ProductCardSkeleton } from "@/components/ProductCard";
+import { currentUser } from "@clerk/nextjs/server";
+
+const user = await currentUser();
 
 async function getCartProducts() {
-  const session = await getSession();
-  const authUser = session?.user;
-
-  if (authUser) {
-    const user = await db.user.findUnique({
-      where: { email: authUser.email },
+  if (user) {
+    const userDb = await db.user.findUnique({
+      where: { email: user.primaryEmailAddress?.emailAddress },
       select: {
         cart: {
           select: {
@@ -25,13 +25,12 @@ async function getCartProducts() {
         },
       },
     });
-    return user?.cart;
+    return userDb?.cart;
   }
 }
 
 export default async function ProductsPage() {
-  const session = await getSession();
-  if (session == null) {
+  if (user == null) {
     return <div>Login to Add products to cart.</div>;
   } else {
     return (

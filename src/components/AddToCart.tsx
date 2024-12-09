@@ -1,32 +1,26 @@
 "use client";
 
-import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { Button } from "./ui/button";
-import { useTransition } from "react";
+import { useActionState } from "react";
 import CartAdd from "@/app/(customerFacing)/_actions/product";
 import { toast } from "sonner";
+import { useUser } from "@clerk/nextjs";
 
 export default function AddToCart({ id }: { id: string }) {
-  const { user } = useUser();
-  const [isPending, startTransition] = useTransition();
+  const user = useUser();
+  const [state, formAction, isPending] = useActionState(CartAdd(id), {});
+
+  if (!user) return;
 
   return (
+    <form action={formAction}>
     <Button
       disabled={isPending}
-      variant="outline"
-      size="icon"
-      onClick={() => {
-        if (user) {
-          startTransition(async () => {
-            await CartAdd(id, user);
-          });
-        } else {
-          toast.error("Login first.");
-        }
-      }}
-      className="h-full p-2"
+      type="submit"
+      className="h-full w-full font-bold mt-3"
     >
-      <ShoppingBagIcon className="h-5 stroke-2" />
+      {isPending ? "loading..." : "Add to cart"}
     </Button>
+    </form>
   );
 }
