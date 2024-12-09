@@ -6,12 +6,11 @@ import { usePathname } from "next/navigation";
 import { ComponentProps, ReactNode } from "react";
 import { ModeToggle } from "./theme-toggle";
 import { Button } from "./ui/button";
-import { useUser } from "@auth0/nextjs-auth0/client";
 import { toast } from "sonner";
 
 export function Nav({ children }: { children: ReactNode }) {
   return (
-    <nav className="bg-background flex px-4 py-4 border-b items-center justify-between shadow-sm">
+    <nav className="bg-background flex px-4 py-4 border-b items-center justify-between shadow">
       <div className="h-fit w-fit flex gap-1 items-center">{children}</div>
       <div className="flex gap-4">
         <UserState />
@@ -59,10 +58,10 @@ function UserState() {
   if (user)
     return (
       <div className="flex gap-2 items-center">
-        <img className="rounded-md w-9 h-9" src={user.picture!} alt={user.name!} />
+        <img className="rounded-full w-9 h-9" src={user.picture!} alt={user.name!} />
         <Button variant="ghost" asChild>
-        <Link href="/api/auth/logout">Logout</Link>
-      </Button>
+          <Link href="/api/auth/logout">Logout</Link>
+        </Button>
       </div>
     );
 }

@@ -1,7 +1,6 @@
 "use server";
 
 import db from "@/db/db";
-import { UserProfile } from "@auth0/nextjs-auth0/client";
 
 export default async function CartAdd(id: string, authuser: UserProfile) {
   // algorithm to add product to user cart

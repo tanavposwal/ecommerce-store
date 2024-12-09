@@ -4,7 +4,6 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import NextTopLoader from "nextjs-toploader";
-import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { Toaster } from 'sonner'
 
 export const metadata: Metadata = {
@@ -19,7 +18,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <UserProvider>
         <body
           className={cn(
             "min-h-screen bg-background font-sans antialiased",
@@ -37,7 +35,6 @@ export default function RootLayout({
           </ThemeProvider>
           <Toaster />
         </body>
-      </UserProvider>
     </html>
   );
 }

@@ -1,52 +1,44 @@
-"use client"
+"use client";
 
-import { emailOrderHistory } from "@/actions/orders"
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { useFormState, useFormStatus } from "react-dom"
+import { emailOrderHistory } from "@/actions/orders";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+//@ts-ignore
+import { useActionState } from "react";
 
 export default function MyOrdersPage() {
-  const [data, action] = useFormState(emailOrderHistory, {})
+  const [state, formAction, isPending] = useActionState(emailOrderHistory, {});
   return (
-    <form action={action} className="max-2-xl mx-auto">
-      <Card>
-        <CardHeader>
-          <CardTitle>My Orders</CardTitle>
-          <CardDescription>
-            Enter your email and we will email you your order history and
-            download links
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input type="email" required name="email" id="email" />
-            {data.error && <div className="text-destructive">{data.error}</div>}
-          </div>
-        </CardContent>
-        <CardFooter>
-          {data.message ? <p>{data.message}</p> : <SubmitButton />}
-        </CardFooter>
-      </Card>
+    <form action={formAction} className="max-w-md mx-auto ">
+      <div>
+        <h2 className="text-2xl font-bold">My Orders</h2>
+        <p className="opacity-70 mt-2">
+          Enter your email and we will email you your order history and download
+          links for bill.
+        </p>
+      </div>
+      <div className="my-4">
+        <Label htmlFor="email" className="text-sm opacity-80">
+          Email
+        </Label>
+        <Input type="email" required name="email" id="email" />
+        {state.error && <div className="text-destructive">{state.error}</div>}
+      </div>
+      <div>
+        {state.message ? (
+          <p>{state.message}</p>
+        ) : (
+          <Button
+            className="w-full font-bold"
+            size="lg"
+            disabled={isPending}
+            type="submit"
+          >
+            {isPending ? "Sending..." : "Send"}
+          </Button>
+        )}
+      </div>
     </form>
-  )
-}
-
-function SubmitButton() {
-  const { pending } = useFormStatus()
-
-  return (
-    <Button className="w-full" size="lg" disabled={pending} type="submit">
-      {pending ? "Sending..." : "Send"}
-    </Button>
-  )
+  );
 }

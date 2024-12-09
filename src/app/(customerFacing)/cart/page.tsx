@@ -1,7 +1,6 @@
 import db from "@/db/db";
 import { Suspense } from "react";
 import { ProductCard, ProductCardSkeleton } from "@/components/ProductCard";
-import { getSession } from "@auth0/nextjs-auth0";
 
 async function getCartProducts() {
   const session = await getSession();

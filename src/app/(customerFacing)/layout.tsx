@@ -2,7 +2,6 @@ import { Nav, NavLink } from "@/components/Nav"
 import { Button } from "@/components/ui/button"
 import { ShoppingBagIcon } from "@heroicons/react/24/solid"
 import Link from "next/link"
-import { getSession } from '@auth0/nextjs-auth0';
 
 export const dynamic = "force-dynamic"
 
@@ -11,19 +10,16 @@ export default async function AdminLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const session = await getSession();
-  const user = session?.user;
-  
   return (
     <>
       <Nav>
         <Button asChild className="mr-3"><Link href="/"><ShoppingBagIcon className="w-6 h-6" /></Link></Button>
         <NavLink href="/products">Products</NavLink>
         {user &&
-        <>
-        <NavLink href="/orders">My Orders</NavLink>
-        <NavLink href="/cart">My Cart</NavLink>
-        </>
+          <>
+            <NavLink href="/orders">My Orders</NavLink>
+            <NavLink href="/cart">My Cart</NavLink>
+          </>
         }
       </Nav>
       <div className="container my-6">{children}</div>

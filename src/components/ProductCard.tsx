@@ -9,7 +9,6 @@ import {
 } from "./ui/card";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import Image from "next/image";
 import AddToCart from "./AddToCart";
 
 type ProductCardProps = {
@@ -28,24 +27,21 @@ export async function ProductCard({
   imagePath,
 }: ProductCardProps) {
   return (
-    <Card className="flex overflow-hidden flex-col max-w-xs md:max-w-sm">
-      <div className="relative w-full h-auto aspect-video">
-        <Image src={imagePath} fill alt={name} quality={50} />
+    <div className="flex flex-col w-72 h-fit">
+      <div className="flex items-center justify-center border">
+        <img src={imagePath} alt={name} className="w-fit max-h-48 aspect-auto" />
       </div>
-      <CardHeader>
-        <CardTitle>{name}</CardTitle>
-        <CardDescription>{formatCurrency(priceInCents / 100)}</CardDescription>
-      </CardHeader>
-      <CardContent className="grow">
-        <p className="line-clamp-4">{description}</p>
-      </CardContent>
-      <CardFooter className="flex gap-3">
+      <div className="my-3">
+        <h2 className="text-lg font-bold truncate">{name}</h2>
+        <p className="opacity-70">{formatCurrency(priceInCents / 100)}</p>
+      </div>
+      <div className="flex gap-1 h-fit items-center justify-center">
         <Button asChild className="w-full">
           <Link href={`/products/${id}/purchase`}>Purchase</Link>
         </Button>
         <AddToCart id={id} />
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 }
 

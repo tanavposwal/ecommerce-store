@@ -21,7 +21,6 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
-import { useUser } from "@auth0/nextjs-auth0/client";
 
 type CheckoutFormProps = {
   product: {
